@@ -16,3 +16,10 @@ dependencies = [
     "statsmodels>=0.14.6",
     "uvicorn>=0.44.0",
 ]
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "ignore::UserWarning",
+    "ignore::DeprecationWarning",
+]
+addopts = "-p no:warnings"
