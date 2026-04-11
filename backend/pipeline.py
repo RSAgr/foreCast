@@ -4,7 +4,7 @@ from anomaly import detect_anomalies
 from llm import generate_explanation
 
 
-def run_pipeline(data):
+def run_pipeline(data , query):
     # Step 1: Feature extraction
     features = extract_features(data)
 
@@ -31,10 +31,10 @@ def run_pipeline(data):
             "max": float(forecast.max())
         },
         "anomalies": anomalies,
-        "model": best_model
+        "model": best_model,
     }
 
-    explanation = generate_explanation(context)
+    explanation = generate_explanation(context , query)
 
     return {
         "features": features,
