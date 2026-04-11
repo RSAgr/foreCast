@@ -33,6 +33,8 @@ Standard Summary:
 2. Why
 3. Any risks
 Keep it simple.
+
+Do not start with "Okay, understood" or "Here is an explanation" or any other similar phrases.
 """
 
     response = model.generate_content(prompt)

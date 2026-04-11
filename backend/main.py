@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from pipeline import run_pipeline
+from backend.pipeline import run_pipeline
 
 app = FastAPI()
 
