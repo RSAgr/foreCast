@@ -1,7 +1,7 @@
-from backend.features import extract_features
-from backend.models import select_model, train_and_forecast, evaluate_models
-from backend.anomaly import detect_anomalies
-from backend.llm import generate_explanation
+from features import extract_features
+from models import select_model, train_and_forecast, evaluate_models
+from anomaly import detect_anomalies
+from llm import generate_explanation
 
 
 def run_pipeline(data , query):

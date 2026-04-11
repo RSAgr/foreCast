@@ -2,7 +2,7 @@ import io
 import pandas as pd
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from pydantic import BaseModel
-from backend.pipeline import run_pipeline
+from pipeline import run_pipeline
 
 app = FastAPI()
 
