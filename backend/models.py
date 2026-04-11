@@ -43,20 +43,30 @@ def train_and_forecast(data, model_name, steps=7):
 
 
 def evaluate_models(data):
-    train = data[:-7]
-    test = data[-7:]
-    
-    # If not enough data for complex seasonal models, use linear trend instead of flat average
-    if len(train) < 14:
-        return "linear_trend", None, None
+    # If data is ridiculously small, just default to moving average without testing
+    if len(data) <= 5:
+        return "moving_average", None, None
+        
+    # Dynamically allocate test size (up to 7 items, but max 25% of the dataset)
+    test_size = min(7, max(1, len(data) // 4))
+    train = data[:-test_size]
+    test = data[-test_size:]
 
-    ma_pred = moving_average_forecast(train, 7)
-    hw_pred = holt_winters_forecast(train, 7)
-    lin_pred = linear_trend_forecast(train, 7)
+    ma_pred = moving_average_forecast(train, test_size)
+    lin_pred = linear_trend_forecast(train, test_size)
 
-    ma_error = mean_absolute_percentage_error(test, ma_pred)
-    hw_error = mean_absolute_percentage_error(test, hw_pred)
-    lin_error = mean_absolute_percentage_error(test, lin_pred)
+    # MA is our baseline error
+    ma_error = float(mean_absolute_percentage_error(test, ma_pred))
+    lin_error = float(mean_absolute_percentage_error(test, lin_pred))
+
+    hw_error = float('inf')
+    # Only test Holt-Winters if we have 2 full seasons (14 points) + test_size
+    if len(train) >= 14:
+        try:
+            hw_pred = holt_winters_forecast(train, test_size)
+            hw_error = float(mean_absolute_percentage_error(test, hw_pred))
+        except Exception:
+            pass # Catch statsmodel math errors if data is flat
 
     best_error = min(ma_error, hw_error, lin_error)
     
