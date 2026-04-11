@@ -46,3 +46,6 @@ htmlcov/
 dist/
 build/
 *.egg-info/
+
+# test data
+test_data.csv

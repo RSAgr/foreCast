@@ -19,6 +19,7 @@ def generate_explanation(context, user_query=None):
 You are a forecasting analyst.
 
 Data insights:
+Historical numerical values (in order): {context.get('historical_data', [])}
 Trend strength: {context['trend']}
 Seasonality strength: {context['seasonality']}
 Noise level: {context['noise']}

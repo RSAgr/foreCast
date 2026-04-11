@@ -22,6 +22,7 @@ def run_pipeline(data , query):
 
     # Step 6: Prepare context for LLM
     context = {
+        "historical_data": list(data),
         "trend": features["trend_strength"],
         "seasonality": features["seasonality_strength"],
         "noise": features["noise_level"],
