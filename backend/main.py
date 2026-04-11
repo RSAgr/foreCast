@@ -7,9 +7,9 @@ app = FastAPI()
 
 class DataInput(BaseModel):
     values: list
-
+    query: str = None
 
 @app.post("/forecast")
 def forecast(data: DataInput):
-    result = run_pipeline(data.values)
+    result = run_pipeline(data.values , data.query)
     return result
