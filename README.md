@@ -2,6 +2,50 @@
 
 A full-stack time series forecasting and anomaly detection application with AI-powered insights. Especially curated for non-tech people so that they can leverage the benefits of Data Science. Forecast uses multiple statistical models to predict future trends and automatically detects outliers in your data.
 
+```mermaid
+flowchart TD
+
+A[Start] --> B["Input Data<br/>(API / CSV / UI)"]
+
+B --> C["Data Cleaning & Validation"]
+
+C --> D[Feature Extraction]
+D --> D1[Trend]
+D --> D2[Seasonality]
+D --> D3[Noise]
+
+D --> E[Select Model]
+
+E -->|Stable / Noisy| F[Moving Average]
+E -->|Trend Detected| G[Linear Trend]
+E -->|Seasonality Detected| H[Holt-Winters]
+
+F --> I[Generate Forecast]
+G --> I
+H --> I
+
+I --> J["Estimate Uncertainty<br/>(Residual Std)"]
+
+J --> K["Create Prediction Range<br/>(Lower & Upper Bounds)"]
+
+I --> L["Detect Anomalies<br/>(Deviation Check)"]
+
+I --> M["Compare with Baseline<br/>(MAPE)"]
+
+I --> N[Generate Insights]
+
+N --> O["LLM Explanation<br/>(Simple Language)"]
+
+K --> P[Final Output]
+L --> P
+M --> P
+O --> P
+
+P --> Q["Display Results<br/>(Charts + Alerts)"]
+
+Q --> R[End]
+```
+
 ## Features
 
 - **Multiple Forecasting Models**
@@ -295,51 +339,11 @@ Create a `.env` file in the project root by checking `.env.example`:
 ```bash
 cp .env.example .env
 ```
-Make sure to add your API keys as needed in the `.env` file.
-## 📊 Flowchart
+Make sure to add your API keys as needed in the `.env` file:
 
-```mermaid
-flowchart TD
-
-A[Start] --> B["Input Data<br/>(API / CSV / UI)"]
-
-B --> C["Data Cleaning & Validation"]
-
-C --> D[Feature Extraction]
-D --> D1[Trend]
-D --> D2[Seasonality]
-D --> D3[Noise]
-
-D --> E[Select Model]
-
-E -->|Stable / Noisy| F[Moving Average]
-E -->|Trend Detected| G[Linear Trend]
-E -->|Seasonality Detected| H[Holt-Winters]
-
-F --> I[Generate Forecast]
-G --> I
-H --> I
-
-I --> J["Estimate Uncertainty<br/>(Residual Std)"]
-
-J --> K["Create Prediction Range<br/>(Lower & Upper Bounds)"]
-
-I --> L["Detect Anomalies<br/>(Deviation Check)"]
-
-I --> M["Compare with Baseline<br/>(MAPE)"]
-
-I --> N[Generate Insights]
-
-N --> O["LLM Explanation<br/>(Simple Language)"]
-
-K --> P[Final Output]
-L --> P
-M --> P
-O --> P
-
-P --> Q["Display Results<br/>(Charts + Alerts)"]
-
-Q --> R[End]
+```env
+# Google Generative AI
+GOOGLE_API_KEY=your_api_key_here
 ```
 
 ## Deployment
@@ -357,10 +361,6 @@ Q --> R[End]
   ```
 - Serve the `dist/` folder with your preferred web server
 
-## License
-
-Add your license here
-
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
@@ -370,5 +370,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 For issues, questions, or feedback, please open an issue on the repository.
 
 ---
-
-**Made with ❤️ for time series forecasting**
