@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { BackgroundGradient } from "./ui/background-gradient";
+import GraphComponent from "./GraphComponent";
 
 export default function CSVComponent() {
 	const [file, setFile] = useState<File | null>(null);
@@ -144,6 +145,7 @@ export default function CSVComponent() {
 						</div>
 					</BackgroundGradient>
 				</div>
+				<GraphComponent result={result} label={targetColumn || "Forecast Values"}/>
 			</div>
 		</>
 	);

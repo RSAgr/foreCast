@@ -6,6 +6,7 @@ import HeroSection from "./components/HeroSection";
 import CSVComponent from "./components/CsvComponent";
 import { cn } from "./lib/utils";
 import ValuesComponent from "./components/ValuesComponet";
+import GraphComponent from "./components/GraphComponent";
 
 function App() {
   const [activeTab, setActiveTab] = useState<"manual" | "csv">("manual");
