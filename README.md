@@ -53,23 +53,28 @@ ML explores hidden patterns, LLM explains it
 cd d:\forecast
 ```
 
-2. Create and activate a Python virtual environment:
+2. Install dependencies and set up the virtual environment:
+
+**Option A: Using `uv` (Recommended)**
+```bash
+uv sync
+```
+
+**Option B: Traditional (`pip` + `venv`)**
 ```bash
 python -m venv .venv
 # On Windows:
 .\.venv\Scripts\Activate.ps1
 # On macOS/Linux:
 source .venv/bin/activate
-```
 
-3. Install Python dependencies:
-```bash
 pip install -r requirements.txt
 ```
 
-4. Create a `.env` file in the project root and add your Google Generative AI API key:
-```env
-GOOGLE_API_KEY=your_api_key_here
+3. Create a `.env` file in the project root by checking `.env.example` and add your Google Generative AI API key:
+```bash
+cp .env.example .env
+# Edit .env and add your API key
 ```
 
 ### Frontend Setup
@@ -94,7 +99,12 @@ cd ..
 ### Start the Backend Server
 
 ```bash
-# Make sure you're in the project root with the virtual environment activated
+# Make sure you're in the project root
+
+# Option A: Using uv
+uv run uvicorn backend.main:app --reload
+
+# Option B: Traditional (ensure your venv is activated)
 uvicorn backend.main:app --reload
 ```
 
@@ -196,7 +206,10 @@ The system automatically selects the best model based on:
 Run the test suite using pytest:
 
 ```bash
-# Activate virtual environment first
+# Option A: Using uv
+uv run pytest tests/ -v
+
+# Option B: Traditional (ensure your venv is activated)
 pytest tests/ -v
 ```
 
@@ -277,16 +290,12 @@ The system validates input data to ensure quality forecasts:
 
 ## Environment Variables
 
-Create a `.env` file in the project root:
+Create a `.env` file in the project root by checking `.env.example`:
 
-```env
-# Google Generative AI
-GOOGLE_API_KEY=your_api_key_here
-
-# FastAPI (optional)
-UVICORN_HOST=0.0.0.0
-UVICORN_PORT=8000
+```bash
+cp .env.example .env
 ```
+Make sure to add your API keys as needed in the `.env` file.
 ## 📊 Flowchart
 
 ```mermaid
@@ -331,6 +340,7 @@ O --> P
 P --> Q[Display Results\n(Charts + Alerts)]
 
 Q --> R[End]
+```
 
 ## Deployment
 
