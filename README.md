@@ -292,46 +292,46 @@ UVICORN_PORT=8000
 ```mermaid
 flowchart TD
 
-A[Start] --> B[Input Data\n(API / CSV / UI)]
+A[Start] --> B["Input Data\nAPI / CSV / UI"]
 
-B --> C[Data Cleaning & Validation]
+B --> C["Data Cleaning & Validation"]
 
-C --> D[Feature Extraction]
+C --> D["Feature Extraction"]
 D --> D1[Trend]
 D --> D2[Seasonality]
 D --> D3[Noise]
 
-D --> E[Select Model]
+D --> E["Select Model"]
 
-E -->|Stable / Noisy| F[Moving Average]
-E -->|Trend Detected| G[Linear Trend]
-E -->|Seasonality Detected| H[Holt-Winters]
+E -->|Stable or Noisy| F["Moving Average"]
+E -->|Trend Detected| G["Linear Trend"]
+E -->|Seasonality Detected| H["Holt Winters"]
 
-F --> I[Generate Forecast]
+F --> I["Generate Forecast"]
 G --> I
 H --> I
 
-I --> J[Estimate Uncertainty\n(Residual Std)]
+I --> J["Estimate Uncertainty\nResidual Std"]
 
-J --> K[Create Prediction Range\n(Lower & Upper Bounds)]
+J --> K["Create Prediction Range\nLower & Upper Bounds"]
 
-I --> L[Detect Anomalies\n(Deviation Check)]
+I --> L["Detect Anomalies\nDeviation Check"]
 
-I --> M[Compare with Baseline\n(MAPE)]
+I --> M["Compare with Baseline\nMAPE"]
 
-I --> N[Generate Insights]
+I --> N["Generate Insights"]
 
-N --> O[LLM Explanation\n(Simple Language)]
+N --> O["LLM Explanation\nSimple Language"]
 
-K --> P[Final Output]
+K --> P["Final Output"]
 L --> P
 M --> P
 O --> P
 
-P --> Q[Display Results\n(Charts + Alerts)]
+P --> Q["Display Results\nCharts + Alerts"]
 
 Q --> R[End]
-
+```
 ## Deployment
 
 ### Backend
