@@ -301,9 +301,9 @@ Make sure to add your API keys as needed in the `.env` file.
 ```mermaid
 flowchart TD
 
-A[Start] --> B[Input Data\n(API / CSV / UI)]
+A[Start] --> B["Input Data<br/>(API / CSV / UI)"]
 
-B --> C[Data Cleaning & Validation]
+B --> C["Data Cleaning & Validation"]
 
 C --> D[Feature Extraction]
 D --> D1[Trend]
@@ -320,24 +320,24 @@ F --> I[Generate Forecast]
 G --> I
 H --> I
 
-I --> J[Estimate Uncertainty\n(Residual Std)]
+I --> J["Estimate Uncertainty<br/>(Residual Std)"]
 
-J --> K[Create Prediction Range\n(Lower & Upper Bounds)]
+J --> K["Create Prediction Range<br/>(Lower & Upper Bounds)"]
 
-I --> L[Detect Anomalies\n(Deviation Check)]
+I --> L["Detect Anomalies<br/>(Deviation Check)"]
 
-I --> M[Compare with Baseline\n(MAPE)]
+I --> M["Compare with Baseline<br/>(MAPE)"]
 
 I --> N[Generate Insights]
 
-N --> O[LLM Explanation\n(Simple Language)]
+N --> O["LLM Explanation<br/>(Simple Language)"]
 
 K --> P[Final Output]
 L --> P
 M --> P
 O --> P
 
-P --> Q[Display Results\n(Charts + Alerts)]
+P --> Q["Display Results<br/>(Charts + Alerts)"]
 
 Q --> R[End]
 ```
