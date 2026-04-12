@@ -2,6 +2,7 @@ import io
 import pandas as pd
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from pydantic import BaseModel
+from typing import Optional
 
 from backend.pipeline import run_pipeline
 from backend.graph import graph  
@@ -12,7 +13,7 @@ app = FastAPI()
 
 class DataInput(BaseModel):
     values: list
-    query: str = None
+    query: Optional[str] = None
 
 app.add_middleware(
     CORSMiddleware,
@@ -24,7 +25,6 @@ app.add_middleware(
 
 @app.post("/forecast")
 def forecast(data: DataInput):
-
     if data.query:
         state = {
             "data": data.values,

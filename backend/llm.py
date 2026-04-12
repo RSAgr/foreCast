@@ -9,7 +9,6 @@ genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 model = genai.GenerativeModel("gemini-2.5-flash")
 
 def generate_explanation(context, user_query=None):
-    print(user_query)
     if user_query:
         query_instruction = f"User Query: {user_query}\n\nInstruction: Answer the user query directly using the data insights provided, then provide the standard summary below."
     else:
