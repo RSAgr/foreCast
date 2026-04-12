@@ -16,8 +16,8 @@ def linear_trend_forecast(data, steps=7):
     return slope * future_x + intercept
 
 
-def holt_winters_forecast(data, steps=7):
-    model = ExponentialSmoothing(data, seasonal='add', seasonal_periods=7)
+def holt_winters_forecast(data, steps=7, period=7):
+    model = ExponentialSmoothing(data, seasonal='add', seasonal_periods=period)
     fit = model.fit()
     return fit.forecast(steps)
 
@@ -33,16 +33,16 @@ def select_model(features):
         return "moving_average"
 
 
-def train_and_forecast(data, model_name, steps=7):
+def train_and_forecast(data, model_name, steps=7, period=7):
     if model_name == "holt_winters":
-        return holt_winters_forecast(data, steps)
+        return holt_winters_forecast(data, steps, period)
     elif model_name == "linear_trend":
         return linear_trend_forecast(data, steps)
     else:
         return moving_average_forecast(data, steps)
 
 
-def evaluate_models(data):
+def evaluate_models(data, period=7):
     # If data is ridiculously small, just default to moving average without testing
     if len(data) <= 5:
         return "moving_average", None, None
@@ -60,10 +60,10 @@ def evaluate_models(data):
     lin_error = float(mean_absolute_percentage_error(test, lin_pred))
 
     hw_error = float('inf')
-    # Only test Holt-Winters if we have 2 full seasons (14 points) + test_size
-    if len(train) >= 14:
+    # Only test Holt-Winters if we have 2 full seasons + test_size
+    if len(train) >= 2 * period:
         try:
-            hw_pred = holt_winters_forecast(train, test_size)
+            hw_pred = holt_winters_forecast(train, test_size, period)
             hw_error = float(mean_absolute_percentage_error(test, hw_pred))
         except Exception:
             pass # Catch statsmodel math errors if data is flat

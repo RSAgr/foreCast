@@ -1,5 +1,5 @@
 from backend.features import extract_features
-from backend.models import select_model, train_and_forecast, evaluate_models
+from backend.models import train_and_forecast, evaluate_models
 from backend.anomaly import detect_anomalies
 from backend.llm import generate_explanation
 
@@ -7,20 +7,18 @@ from backend.llm import generate_explanation
 def run_pipeline(data , query):
     # Step 1: Feature extraction
     features = extract_features(data)
+    period = features.get("seasonality_period", 7)
 
-    # Step 2: Model selection
-    model_choice = select_model(features)
+    # Step 2: Validation vs baseline
+    best_model, hw_error, ma_error = evaluate_models(data, period)
 
-    # Step 3: Validation vs baseline
-    best_model, hw_error, ma_error = evaluate_models(data)
+    # Step 3: Forecast
+    forecast = train_and_forecast(data, best_model, steps=7, period=period)
 
-    # Step 4: Forecast
-    forecast = train_and_forecast(data, best_model)
-
-    # Step 5: Anomaly detection
+    # Step 4: Anomaly detection
     anomalies = detect_anomalies(data)
 
-    # Step 6: Prepare context for LLM
+    # Step 5: Prepare context for LLM
     context = {
         "historical_data": list(data),
         "trend": features["trend_strength"],
