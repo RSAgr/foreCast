@@ -12,19 +12,9 @@ function App() {
 
   return (
     <div className="p-4">
-      <div className="block h-[100vh]">
-        <WavyBackground className="max-w-6xl mx-auto px-4 py-20">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-6xl font-bold text-white">ForeCast</h1>
-            <p className="text-lg text-white/80 mt-4 max-w-2xl mx-auto">
-              AI-powered time-series analysis with LangGraph orchestration.
-            </p>
-          </div>
-        </WavyBackground>
+      <div className="block h-screen">
+        <HeroSection/>
       </div>
-      {/* <div className="block h-[50vh] mb-20">
-        <HeroSection />
-      </div> */}
 
       <div className="mt-10 block">
         <div className="flex p-1 bg-zinc-900 border border-zinc-800 rounded-xl shadow-2xl">

@@ -1,35 +1,19 @@
-import { BackgroundRippleEffect } from "./ui/background-ripple-effect";
-import { SparklesCore } from "./ui/sparkles";
+import { WavyBackground } from "./ui/wavy-background";
 
 export default function HeroSection() {
 	return (
-		<div className="w-full bg-black flex flex-col items-center justify-center overflow-hidden h-screen">
-      <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center text-white relative z-20">
-        ForeCast
-      </h1>
-      <div className="text-white text-lg mt-2">
-        AI-powered time-series analysis with LangGraph orchestration.
-      </div>
-      <div className="w-[40rem] h-40 relative">
-        {/* Gradients */}
-        <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
-        <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
-        <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
-        <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
- 
-        {/* Core component */}
-        <SparklesCore
-          background="transparent"
-          minSize={0.4}
-          maxSize={1}
-          particleDensity={1200}
-          className="w-full h-full"
-          particleColor="#FFFFFF"
-        />
- 
-        {/* Radial Gradient to prevent sharp edges */}
-        <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
-      </div>
-    </div>
+		<>
+			<WavyBackground className="max-w-6xl mx-auto px-4 py-20">
+				<div className="text-center mb-12">
+					<h1 className="text-6xl md:text-8xl lg:text-9xl font-extrabold text-white tracking-tighter leading-none">
+						ForeCast
+					</h1>
+					<p className="text-xl md:text-2xl text-white/70 mt-6 max-w-3xl mx-auto font-medium leading-relaxed">
+						AI-powered time-series analysis <br className="hidden md:block" />
+						with <span className="text-white">LangGraph orchestration</span>.
+					</p>
+				</div>
+			</WavyBackground>
+		</>
 	)
 }
