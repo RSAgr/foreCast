@@ -11,7 +11,7 @@ function App() {
   const [activeTab, setActiveTab] = useState<"manual" | "csv">("manual");
 
   return (
-    <>
+    <div className="p-4">
       <div className="block h-[100vh]">
         <WavyBackground className="max-w-6xl mx-auto px-4 py-20">
           <div className="text-center mb-12">
@@ -54,7 +54,7 @@ function App() {
       </div>
       { activeTab === "manual" && <ValuesComponent/> }
       { activeTab === "csv" && <CSVComponent/> }
-    </>
+    </div>
   );
 }
 

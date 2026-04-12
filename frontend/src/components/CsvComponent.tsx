@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { BackgroundGradient } from "./ui/background-gradient";
 
 export default function CSVComponent() {
 	const [file, setFile] = useState<File | null>(null);
@@ -89,32 +90,59 @@ export default function CSVComponent() {
 				</div>
 
 				{/* OUTPUT SECTION */}
-				<div className="flex flex-col gap-4">
-					<h2 className="text-2xl text-white font-semibold">Analysis Results</h2>
-					<div className="p-6 rounded-2xl bg-black/40 border border-white/10 text-white min-h-[300px] backdrop-blur-md">
-						{result ? (
-							<div className="space-y-4">
-								<div>
-									<span className="text-xs font-bold uppercase text-blue-400">Model Used</span>
-									<p className="text-lg">{result.model_selected || result.model}</p>
-								</div>
-								<div>
-									<span className="text-xs font-bold uppercase text-blue-400">AI Explanation</span>
-									<p className="text-sm leading-relaxed text-white/90 whitespace-pre-line">
-										{result.explanation}
-									</p>
-								</div>
-								{result.anomalies?.length > 0 && (
-									<div>
-										<span className="text-xs font-bold uppercase text-red-400">Anomalies Detected</span>
-										<p className="text-sm text-red-200">{result.anomalies.length} outliers found.</p>
+				<div className="w-full mt-4">
+					<BackgroundGradient className="rounded-[22px] w-full dark:bg-zinc-900 overflow-hidden">
+						<div className="sm:p-8 rounded-[20px] bg-zinc-950/90 flex flex-col gap-2">
+							<h2 className="text-2xl text-white font-bold tracking-tight">
+								Analysis Results
+							</h2>
+
+							<div className="p-6 rounded-xl bg-white/5 border border-white/10 text-white min-h-[300px] backdrop-blur-md">
+								{result ? (
+									<div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
+										{/* Model Info */}
+										<div className="flex flex-col gap-1">
+											<span className="text-[10px] font-black uppercase tracking-widest text-blue-500">
+												Engine
+											</span>
+											<p className="text-lg font-medium text-blue-100">
+												{result.model_selected || result.model || "Proprietary Model"}
+											</p>
+										</div>
+
+										{/* AI Explanation */}
+										<div className="flex flex-col gap-1">
+											<span className="text-[10px] font-black uppercase tracking-widest text-emerald-500">
+												AI Insight
+											</span>
+											<p className="text-sm leading-relaxed text-zinc-200 whitespace-pre-line bg-zinc-900/50 p-3 rounded-lg border border-white/5">
+												{result.explanation}
+											</p>
+										</div>
+
+										{/* Anomalies section */}
+										{result.anomalies?.length > 0 && (
+											<div className="flex flex-col gap-1 border-t border-white/5 pt-4">
+												<span className="text-[10px] font-black uppercase tracking-widest text-red-500">
+													Risk Assessment
+												</span>
+												<div className="flex items-center gap-2 text-red-200">
+													<div className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+													<p className="text-sm font-semibold">
+														{result.anomalies.length} outliers detected in the sequence.
+													</p>
+												</div>
+											</div>
+										)}
+									</div>
+								) : (
+									<div className="h-full flex flex-col items-center justify-center space-y-3 opacity-40">
+										<p className="text-sm italic">Waiting for csv to upload</p>
 									</div>
 								)}
 							</div>
-						) : (
-							<p className="text-white/40 italic">Waiting for CSV upload...</p>
-						)}
-					</div>
+						</div>
+					</BackgroundGradient>
 				</div>
 			</div>
 		</>
