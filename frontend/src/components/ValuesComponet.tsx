@@ -3,6 +3,7 @@ import { useState } from "react";
 import { BackgroundGradient } from "./ui/background-gradient";
 import GraphComponent from "./GraphComponent";
 import { Button } from "./ui/moving-border";
+import ReactMarkdown from "react-markdown";
 
 export default function ValuesComponent() {
 
@@ -114,7 +115,10 @@ export default function ValuesComponent() {
 												AI Insight
 											</span>
 											<p className="text-sm leading-relaxed text-zinc-200 whitespace-pre-line bg-zinc-900/50 p-3 rounded-lg border border-white/5">
-												{result.explanation}
+												<ReactMarkdown
+												>
+													{result.explanation}
+												</ReactMarkdown>
 											</p>
 										</div>
 
