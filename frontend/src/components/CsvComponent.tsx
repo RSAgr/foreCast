@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { BackgroundGradient } from "./ui/background-gradient";
 import GraphComponent from "./GraphComponent";
+import { Button } from "./ui/moving-border";
 
 export default function CSVComponent() {
 	const [file, setFile] = useState<File | null>(null);
@@ -81,13 +82,24 @@ export default function CSVComponent() {
 						className="p-3 rounded-lg bg-white/10 text-white border border-white/20 focus:border-white/50 outline-none transition"
 					/>
 
-					<button
-						onClick={handleSubmit}
-						disabled={loading}
-						className="mt-2 bg-white text-black font-bold py-3 rounded-lg hover:scale-[1.02] active:scale-[0.98] transition disabled:opacity-50"
-					>
-						{loading ? "Processing CSV..." : "Run Analysis"}
-					</button>
+					<div className="mt-2">
+						<Button
+							borderRadius="0.5rem"
+							onClick={handleSubmit}
+							disabled={loading}
+							containerClassName="w-full"
+							className="w-full dark:bg-zinc-900 text-white dark:text-black dark:border-slate-800 font-bold py-3 transition duration-200 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50"
+						>
+							{loading ? (
+								<div className="flex items-center gap-2">
+									<div className="h-4 w-4 border-2 border-current border-t-transparent animate-spin rounded-full" />
+									<span>Processing CSV...</span>
+								</div>
+							) : (
+								"Run Analysis"
+							)}
+						</Button>
+					</div>
 				</div>
 
 				{/* OUTPUT SECTION */}
@@ -145,7 +157,7 @@ export default function CSVComponent() {
 						</div>
 					</BackgroundGradient>
 				</div>
-				<GraphComponent result={result} label={targetColumn || "Forecast Values"}/>
+				<GraphComponent result={result} label={targetColumn || "Forecast Values"} />
 			</div>
 		</>
 	);
