@@ -81,6 +81,10 @@ Q --> R[End]
 
 ML explores hidden patterns, LLM explains it
 
+## How the website looks like
+<img width="2537" height="1415" alt="Screenshot 2026-04-14 152256" src="https://github.com/user-attachments/assets/05a8fa54-8a0f-4a1c-9245-9c4ccb8b7a6a" />
+<img width="1267" height="617" alt="Screenshot 2026-04-14 153348" src="https://github.com/user-attachments/assets/3e3358a3-606a-4375-ab7c-698aec8ec3ad" />
+
 ## 🛠️ Prerequisites
 
 - Python 3.13+
